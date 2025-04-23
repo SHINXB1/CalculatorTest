@@ -1,21 +1,22 @@
-name: Run .NET Tests
+name: Run Calculator Tests
 
 on:
   pull_request:
-    branches: ['*']  # Запускается на pull request в любую ветку
+    branches:
+      - '**'  # на все ветки
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '8.0.x'  # или 7.0.x, если ты на 7
 
     - name: Restore dependencies
       run: dotnet restore
